@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire de contact</title>
+    <meta content="" name="description">
+    <meta content="width= device-width, initial-scale=1" name="viewport">
+    <script src="../js/exemple.js"></script>
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/form.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/navbar.css">
+
+
+</head>
+<body>
+<header>
+    <div id="nav-fixed">
+        <div class="nav-bar">
+            <ol class="logo-list">
+                <li id="first-logo"><a><img alt="logo arobase" id="arobase" src="../img/logo-arobase.png"></a></li>
+                <li id="second-logo"><a><img alt="logo instagram" id="insta" src="../img/logo-instagram.png"></a></li>
+                <li id="third-logo"><a><img alt="logo facebook" id="facebook" src="../img/logo-facebook.png"></a></li>
+            </ol>
+        </div>
+        <div class="green-bar">
+            <img alt="logo" id="logo" src="../img/logo-cerf-vert.png">
+
+            <div id="menu-burger">
+                <input type="checkbox"  id="menu-toggle"/>
+                <span>-</span>
+                <span></span>
+                <span></span>
+
+
+                <ul id="menu">
+                    <li id="accueil" onclick="location.href = '/index.html'">Accueil</li>
+                
+                    <li id="association">
+                        Association
+                        <ul>
+                            <li onclick="location.href = 'HTML/gouvernance.html'">Gouvernance</li>
+                            <li onclick="location.href = 'HTML/historique.html'">Historique</li>
+                            <li onclick="location.href = 'HTML/plan-strategique.html'">Plan Stratégique</li>
+                            <li onclick="location.href = 'HTML/equipe.html'">Équipe</li>
+                        </ul>
+                    </li>
+                
+                    <li id="decouverte-protection">
+                        Découverte & Protection
+                        <ul>
+                            <li onclick="location.href = 'HTML/decouverte.html'">Découverte</li>
+                            <li id="lieux-loisirs" onclick="location.href = 'HTML/lieux-loisirs.html'">Les lieux de loisirs</li>
+                            <ul>
+                                <li onclick="location.href = 'HTML/parcs.html'">Les parcs</li>
+                                <li onclick="location.href = 'HTML/circuits-naturels.html'">Les circuits naturels</li>
+                            </ul>
+                            <li id="protection" onclick="location.href = 'HTML/protection.html'">Protection</li>
+                            <ul>
+                                <li onclick="location.href = 'HTML/politiques.html'">Les politiques</li>
+                                <li onclick="location.href = 'HTML/signaler-depassement.html'">Signaler un dépassement</li>
+                                <li onclick="location.href = 'HTML/conseils.html'">Conseils (astuces)</li>
+                                <ul>
+                                    <li onclick="location.href = 'HTML/secourir-animal.html'">Comment secourir un animal</li>
+                                    <li onclick="location.href = 'HTML/proteger-plante.html'">Protéger une plante</li>
+                                </ul>
+                            </ul>
+                            <li onclick="location.href = 'HTML/especes-rares.html'">Espèces rares</li>
+                        </ul>
+                    </li>
+                
+                    <li id="partenaires">
+                        Partenaires
+                        <ul>
+                            <li onclick="location.href = 'HTML/partenaires-publics.html'">Partenaires publics</li>
+                            <li onclick="location.href = 'HTML/partenaires-entreprise.html'">Partenaires entreprise</li>
+                            <li onclick="location.href = 'HTML/partenaires-associatifs.html'">Partenaires associatifs</li>
+                        </ul>
+                    </li>
+                    <li id="partenaires">
+                            Bénificiaires
+                            <ul>
+                                <li onclick="location.href = 'HTML/beneficiaire-actuel.html'">Bénéficiaire actuel</li>
+                                <li onclick="location.href = 'HTML/anciens-beneficiaires.html'">Anciens bénéficiaires</li>
+                                <li onclick="location.href = 'HTML/devenir-beneficiaire.html'">Devenir bénéficiaire</li>
+                            </ul>
+                        
+                    </li>
+                
+                    <li id="partenaires">
+                        Projet
+                        <ul>
+                            <li onclick="location.href = 'HTML/beneficiaire-actuel.html'">Liste de Projets</li>
+                            <li onclick="location.href = 'HTML/anciens-beneficiaires.html'">Formations</li>
+                        </ul>
+                    </li>
+
+                    
+                         
+                    <li id="formations" onclick="location.href = '../HTML/form-association.html'">Faire un don </li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</header>
+<h1>Avez-vous des questions ? <br>ou <br> souhaiteriez-vous faire un don ?</h1>
+<form class="form">
+    <div class="coordinate">
+        <div class="name">
+            <label for="name">Nom</label>
+            <input id="name" name="name" required type="text">
+        </div>
+        <div class="first-name"><label for="first-name">Prénom</label>
+            <input id="first-name" name="first-name" required type="text"></div>
+        <div class="email"><label for="email"> Adresse Email</label>
+            <input id="email" name="email" required type="email"></div>
+        <div class="residence"><label for="residence">Adresse de domicile</label>
+            <input id="residence" name="residence" required type="text"></div>
+        <div class="phone-number">
+
+            <label for="phone-number">Numéro de téléphone</label>
+            <select id="region-number" name="region-number">
+                <option value="+41">+216</option>
+                <option value="+33">+33</option>
+                <option value="+39">+217</option>
+                <option value="+30">+1</option>
+                <option value="+32">+240</option>
+            </select>
+            <input id="phone-number" name="phone-number" required type="tel">
+        </div>
+    </div>
+    <div class="donation-checkbox">
+        <input checked id="donation1" name="donation1" type="checkbox">
+        <label for="donation1">Donnation 1(50DT)</label>
+    </div>
+    <div class="donation-checkbox">
+        <input id="donation2" name="donation2" type="checkbox">
+        <label for="donation2">Donnation 2(150DT)</label>
+    </div>
+    <div class="donation-checkbox">
+        <input id="donation3" name="donation3" type="checkbox">
+        <label for="donation3">Donnation 3(250d)</label>
+    </div>
+
+    <div class="commentary">
+        <label for="commentary">Laissez un commentaire</label>
+        <textarea cols="45" id="commentary" name="commentary" rows="15"> </textarea>
+    </div>
+    <div class="information-checkbox">
+
+        <label for="information-checkbox">Je souhaite recevoir du courriel d'information</label>
+
+            <input id="information-checkbox" name="yesOrNo" type="radio">
+            <label for="information-checkbox">Oui</label>
+
+
+            <input id="radio-no" name=yesOrNo type="radio">
+            <label for="information-checkbox">Non</label>
+
+    </div>
+    </div>
+    <div class="condition-checkbox">
+        <input id="condition-checkbox" name="condition-checkbox" type="checkbox">
+        <label for="condition-checkbox">J'ai lu et accepté les<a href="conditions-générales-d'utilisation"></a> (pas
+            encore
+            disponible)</label>
+    </div>
+    <div class="button-submit">
+        <button type="submit">Envoyer</button>
+    </div>
+</form>
+<footer>
+    <div class="adress">
+        <ol>
+            <li>7ay lCornich</li>
+            <li>rue 13</li>
+            <li>Stah jaber</li>
+            <li>Mounastir</li>
+            <li>+216.50.895.250</li>
+            <li>Notre Email: <a href="">hermi.mouhib1@gmail.com</a></li>
+        </ol>
+
+    </div>
+</footer>
+</body>
+</html>

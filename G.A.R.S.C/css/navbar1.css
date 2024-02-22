@@ -1,0 +1,193 @@
+/* navbar.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #4CAF50; /* Green color for the navigation bar */
+}
+
+#menu-burger {
+    display: block;
+    position: absolute;
+    right: 8vw;
+    top: 13vh;
+    height: 3vh;
+    z-index: 1;
+
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#menu-burger a {
+    text-decoration: none;
+    color: white;
+
+    transition: color 0.3s ease;
+}
+
+
+
+#menu-burger input {
+    display: block;
+    width: 57px;
+    height: 54px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+
+    cursor: pointer;
+
+    opacity: 0; /* hide this */
+    z-index: 2; /* and place it over the hamburger */
+
+    -webkit-touch-callout: none;
+}
+
+#menu-burger span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+
+    background: #151414;
+    border-radius: 3px;
+
+    z-index: 1;
+
+    transform-origin: 4px 0;
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    opacity 0.55s ease;
+}
+
+#menu-burger span:first-child {
+    transform-origin: 0 0;
+}
+
+#menu-burger span:nth-last-child(2) {
+    transform-origin: 0 100%;
+}
+
+#menu-burger input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #f6efef;;
+}
+
+#menu-burger input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menu-burger input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+}
+#menu-toggle {
+    display: none;
+}
+
+#menu-burger span {
+    display: block;
+    height: 3px;
+    width: 30px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+#menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #4CAF50; /* Green background color for the menu */
+}
+
+#menu li {
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+}
+
+#menu li:hover,
+#menu li:focus-within {
+    background-color: #45a049; /* Darker green for the hover and focus effect */
+}
+
+#menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #4CAF50; /* Green background color for submenu items */
+    position: absolute;
+    display: none;
+}
+
+#menu li:hover > ul,
+#menu li:focus-within > ul {
+    display: flex;
+    flex-direction: column;
+    position: static;
+}
+
+#menu ul li {
+    display: block;
+    padding: 10px;
+}
+
+#menu ul li:hover,
+#menu ul li:focus-within {
+    background-color: #45a049; /* Darker green for submenu hover and focus effect */
+}
+
+/* Adjust styles for submenus with multiple levels */
+#menu ul ul {
+    top: 0;
+    left: 100%;
+}
+
+/* Media query to adjust layout for smaller screens */
+@media only screen and (max-width: 768px) {
+    #menu-burger {
+        margin-right: 20px;
+    }
+
+    #menu-toggle:checked ~ #menu {
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Adjust as needed */
+        left: 0;
+        right: 0;
+        background-color: #4CAF50;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    #menu li {
+        padding: 10px;
+    }
+
+    #menu ul {
+        position: static;
+        background-color: #4CAF50;
+        max-height: none;
+        display: none;
+    }
+
+    #menu li:hover > ul,
+    #menu li:focus-within > ul {
+        display: flex;
+        flex-direction: column;
+        position: static;
+    }
+}

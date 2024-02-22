@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Site association animal</title>
+    <meta content="" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/article.css" rel="stylesheet">
+
+    <script src="../js/exemple.js"></script>
+    <meta content="#fafafa" name="theme-color">
+    <link rel="stylesheet" type="text/css" href="../css/navbar.css">
+
+</head>
+
+<body>
+<header>
+    <div id="nav-fixed">
+        <div class="nav-bar">
+            <ol class="logo-list">
+                <li id="first-logo"><a><img alt="logo arobase" id="arobase" src="../img/logo-arobase.png"></a></li>
+                <li id="second-logo"><a><img alt="logo instagram" id="insta" src="../img/logo-instagram.png"></a></li>
+                <li id="third-logo"><a><img alt="logo facebook" id="facebook" src="../img/logo-facebook.png"></a></li>
+            </ol>
+        </div>
+        <div class="green-bar">
+            <img alt="logo" id="logo" src="../img/logo-cerf-vert.png">
+
+            <div id="menu-burger">
+                <input type="checkbox"  id="menu-toggle"/>
+                <span>-</span>
+                <span></span>
+                <span></span>
+
+
+                <ul id="menu">
+                    <li id="accueil" onclick="location.href = '/index.html'">Accueil</li>
+                
+                    <li id="association">
+                        Association
+                        <ul>
+                            <li onclick="location.href = 'HTML/gouvernance.html'">Gouvernance</li>
+                            <li onclick="location.href = 'HTML/historique.html'">Historique</li>
+                            <li onclick="location.href = 'HTML/plan-strategique.html'">Plan Stratégique</li>
+                            <li onclick="location.href = 'HTML/equipe.html'">Équipe</li>
+                        </ul>
+                    </li>
+                
+                    <li id="decouverte-protection">
+                        Découverte & Protection
+                        <ul>
+                            <li onclick="location.href = 'HTML/decouverte.html'">Découverte</li>
+                            <li id="lieux-loisirs" onclick="location.href = 'HTML/lieux-loisirs.html'">Les lieux de loisirs</li>
+                            <ul>
+                                <li onclick="location.href = 'HTML/parcs.html'">Les parcs</li>
+                                <li onclick="location.href = 'HTML/circuits-naturels.html'">Les circuits naturels</li>
+                            </ul>
+                            <li id="protection" onclick="location.href = 'Article.html'">Protection</li>
+                            <ul>
+                                <li onclick="location.href = 'HTML/politiques.html'">Les politiques</li>
+                                <li onclick="location.href = 'HTML/signaler-depassement.html'">Signaler un dépassement</li>
+                                <li onclick="location.href = 'HTML/conseils.html'">Conseils (astuces)</li>
+                                <ul>
+                                    <li onclick="location.href = 'HTML/secourir-animal.html'">Comment secourir un animal</li>
+                                    <li onclick="location.href = 'HTML/proteger-plante.html'">Protéger une plante</li>
+                                </ul>
+                            </ul>
+                            <li onclick="location.href = 'HTML/especes-rares.html'">Espèces rares</li>
+                        </ul>
+                    </li>
+                
+                    <li id="partenaires">
+                        Partenaires
+                        <ul>
+                            <li onclick="location.href = 'HTML/partenaires-publics.html'">Partenaires publics</li>
+                            <li onclick="location.href = 'HTML/partenaires-entreprise.html'">Partenaires entreprise</li>
+                            <li onclick="location.href = 'HTML/partenaires-associatifs.html'">Partenaires associatifs</li>
+                        </ul>
+                    </li>
+                    <li id="partenaires">
+                            Bénificiaires
+                            <ul>
+                                <li onclick="location.href = 'HTML/beneficiaire-actuel.html'">Bénéficiaire actuel</li>
+                                <li onclick="location.href = 'HTML/anciens-beneficiaires.html'">Anciens bénéficiaires</li>
+                                <li onclick="location.href = 'HTML/devenir-beneficiaire.html'">Devenir bénéficiaire</li>
+                            </ul>
+                        
+                    </li>
+                
+                    <li id="partenaires">
+                        Projet
+                        <ul>
+                            <li onclick="location.href = 'HTML/beneficiaire-actuel.html'">Liste de Projets</li>
+                            <li onclick="location.href = 'HTML/anciens-beneficiaires.html'">Formations</li>
+                        </ul>
+                    </li>
+
+                    
+                         
+                 <li id="formations" onclick="location.href = 'form-association.html'">Faire un don </li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</header>
+<div class="questions">
+    <h2>1: Expliquer la différence entre une requête HTTP synchrone et asynchrone.</h2>
+    <p>Une requêt synchrone va s'exécuter et le client ne pourra pas exécuter d'autre requête tant que celle-ci ne sera
+        pas achevée.<br>Tandis que la requête asynchrone elle peut en exécuter plusieurs en parallèle</p>
+    <h2>2: Expliquer les différences fondamentales entre 3 navigateurs web et expliquer où on peut
+        trouver leur compatibilité CSS.</h2>
+    <h2>- Chrome utilise un engin de rendu qui est le plus efficace, Google chrome à eu une note de 100/100 au test
+        Acid3.<br>
+        - Firefox est un navigateur open source car leur vision d'internet est différentes que celle des autres
+        navigateurs.<br>
+        - Safari est un navigateur installer de base sur les produits Apple et est utilisable que par ceux-ci.</h2><br>
+    <p>-On peut retrouver des différences de compatibilités CSS avec caniuse.com</p>
+    <h2>3: Écrire vos recommandations (best practice) pour programmer un site web en HTML / CSS.</h2>
+    <p>Je conseilles de faire du mobile first, c'est-à-dire de coder son site en débutant par des proportions de
+        téléphone mobile car je trouves plus facile d'agrandir quelque-chose que de voir en grand et ensuite devoir le
+        rendre plus petit.<br>Et aussi essayer le plus possible d'organiser son CSS que çe soit par des commentaires ou
+        alors crée plusieurs fichiers CSS pour des fonctionnalités ce qui permet de mieux s'y retrouver. </p>
+    <h2>4: Décrire les aspects juridiques qui doivent être pris en compte et respectés sur un site web
+        (droits d’auteur, protection de la personnalité).</h2>
+    <p>- Droits d'auteur: Un site est toujours défendu par le droit d'auteur et celui-ci doit être démontré par un
+        témoignage qui prouve l'originalité du site et de sa créativité en prenant en compte la personnalité du
+        créateur. Il pourra donc ensuite protéger son contenu contre tout plagiat, exploitation ou modification de son
+        site par autrui.<br>- Protection de la personnalité: Cet aspect juridique représente la protection des données
+        d'autrui,
+        comme la santé, l'intégrité physique et psychique ainsi que social.</p>
+    <h2>5: Quels sont les formats multimédias supportés nativement par HTML 5.</h2>
+    <p> Il y'en a 3: <br>- Audio qui est tout ce qui des enregistrements audio en utilisant la balise &lt;audio&gt;.<br>-Vidéo
+        ce qui consiste à pouvoir mettre du contenu vidéo avec la balise &lt;video&gt;.<br>- Image qui comme son nom
+        l'indique permet de pouvoir mettre des image sur notre site en mettant &lt;img&gt;.</p>
+</div>
+<footer>
+    <div class="adress">
+        <ol>
+            <li>7ay lCornich</li>
+            <li>rue 13</li>
+            <li>Stah jaber</li>
+            <li>Mounastir</li>
+            <li>+216.50.895.250</li>
+            <li>Notre Email: <a href="">hermi.mouhib1@gmail.com</a></li>
+        </ol>
+
+    </div>
+</footer>
+</body>
+</html>

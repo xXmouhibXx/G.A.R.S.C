@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Site G.A.R.S.C</title>
+    <meta content="" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <link href="css/main.css" rel="stylesheet">
+
+    <script src="js/exemple.js"></script>
+    <meta content="#fafafa" name="theme-color">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+</head>
+
+<body>
+<header>
+    <div id="nav-fixed">
+        <div class="nav-bar">
+            <ol class="logo-list">
+                <li id="first-logo" > <a href="https://www.linkedin.com/in/mouhib-hermi-200b42274/" target="_blank">
+                     <img alt="logo arobase" id="arobase" src="img/logo-arobase.png"></a></li>
+                <li id="second-logo"><a><img alt="logo instagram" id="insta" src="img/logo-instagram.png"></a></li>
+                <li id="third-logo"><a><img alt="logo facebook" id="facebook" src="img/logo-facebook.png"></a></li>
+            </ol>
+        </div>
+        <div class="green-bar">
+            <img alt="logo" id="logo" src="img/logo-cerf-vert.png">
+
+            <div id="menu-burger">
+                <input type="checkbox"  id="menu-toggle"/>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            
+                <ul id="menu">
+                    <li id="accueil" onclick="location.href = 'index.html'">Accueil</li>
+                
+                    <li id="association">
+                        Association
+                        <ul>
+                            <li onclick="location.href = 'HTML/gouvernance.html'">Gouvernance</li>
+                            <li onclick="location.href = 'HTML/historique.html'">Historique</li>
+                            <li onclick="location.href = 'HTML/plan-strategique.html'">Plan Stratégique</li>
+                            <li onclick="location.href = 'HTML/equipe.html'">Équipe</li>
+                        </ul>
+                    </li>
+                
+                    <li id="decouverte-protection">
+                        Découverte & Protection
+                        <ul>
+                            <li onclick="location.href = 'HTML/decouverte.html'">Découverte</li>
+                            <li id="lieux-loisirs" onclick="location.href = 'HTML/lieux-loisirs.html'">Les lieux de loisirs</li>
+                            <ul>
+                                <li onclick="location.href = 'HTML/parcs.html'">Les parcs</li>
+                                <li onclick="location.href = 'HTML/circuits-naturels.html'">Les circuits naturels</li>
+                            </ul>
+                            <li id="protection" onclick="location.href = 'HTML/Article.html'">Protection</li>
+                            <ul>
+                                <li onclick="location.href = 'HTML/politiques.html'">Les politiques</li>
+                                <li onclick="location.href = 'HTML/signaler-depassement.html'">Signaler un dépassement</li>
+                                <li onclick="location.href = 'HTML/conseils.html'">Conseils (astuces)</li>
+                                <ul>
+                                    <li onclick="location.href = 'HTML/secourir-animal.html'">Comment secourir un animal</li>
+                                    <li onclick="location.href = 'HTML/proteger-plante.html'">Protéger une plante</li>
+                                </ul>
+                            </ul>
+                            <li onclick="location.href = 'HTML/especes-rares.html'">Espèces rares</li>
+                        </ul>
+                    </li>
+                
+                    <li id="partenaires">
+                        Partenaires
+                        <ul>
+                            <li onclick="location.href = 'HTML/partenaires-publics.html'">Partenaires publics</li>
+                            <li onclick="location.href = 'HTML/partenaires-entreprise.html'">Partenaires entreprise</li>
+                            <li onclick="location.href = 'HTML/partenaires-associatifs.html'">Partenaires associatifs</li>
+                        </ul>
+                    </li>
+                    <li id="partenaires">
+                            Bénificiaires
+                            <ul>
+                                <li onclick="location.href = 'HTML/beneficiaire-actuel.html'">Bénéficiaire actuel</li>
+                                <li onclick="location.href = 'HTML/anciens-beneficiaires.html'">Anciens bénéficiaires</li>
+                                <li onclick="location.href = 'HTML/devenir-beneficiaire.html'">Devenir bénéficiaire</li>
+                            </ul>
+                        
+                    </li>
+                
+                    <li id="partenaires">
+                        Projet
+                        <ul>
+                            <li onclick="location.href = 'HTML/beneficiaire-actuel.html'">Liste de Projets</li>
+                            <li onclick="location.href = 'HTML/anciens-beneficiaires.html'">Formations</li>
+                        </ul>
+                    </li>
+
+                    
+                         
+                 <li id="formations" onclick="location.href = 'HTML/form-association.html'">Faire un don </li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</header>
+<div class="slideshow-container">
+
+    <div class="mySlides fade ">
+        <img alt="image d'un ours" id="ours" src="img/ours_polaire4k.jpg"/>
+        <div id="text-ours"><h1>AIDER les Ours Polaires</h1>
+            <p>les ours en détresse</p>
+            <button type="button">cliquez-ici</button>
+        </div>
+    </div>
+
+    <div class="mySlides fade">
+        <img alt="image d'un Malinois" id="tortue" src="img/tortue_giant.jpg">
+        <div id="text-tortue"><h1>AIDER LES Tortue géante</h1>
+            <p>Tortue géante des Galápagos</p>
+            <button type="button">cliquez-ici</button>
+        </div>
+    </div>
+    <div class="mySlides fade">
+        <img alt="image d'un petit chien" id="petit-saola" src="img/saola.jpeg">
+        <div id="text-petit-saola"><h1>AIDER LES SAOLA</h1>
+            <p>les Timide Saola </p>
+            <button type="button">cliquez-ici</button>
+        </div>
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+<div id="dots">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+
+<article class="paragraph-home"><h2 id="title-home">Bienvenue a l'association Global Alliance for Rare Species Conservation </h2>
+    <p>Notre association pour but non lucratif de sensibiliser chacun aux problèmes lié a Les animaux qui sont au bord de la disparition. 
+        Pour cela nous vous proposons des services de dons distribués à plusieurs associations pour
+        différentes causes et but. Nous vous remercions d'avance pour votre visite sur notre site.</p>
+</article>
+<div class="donations">
+    <section class="first-donation h1-donation">
+        <div class="text-bee"><h2>Protéger les abeilles</h2>
+            <p>Cette donation vise à aider les abeilles qui sont extrêmements importantes pour notre écosystème</p>
+                <button onclick="window.location.href = 'HTML/form-association.html'" type="button">Donner</button>
+
+        </div>
+    </section>
+    <section class="second-donation h1-donation">
+        <div class="text-puppy"><h2>Aidez-les</h2>
+            <p>Le monde a remarqué un nombre improtant de chiots abandonner.<br>aidez-nous en donant pour cette cause
+            </p>
+                <button onclick="window.location.href = 'HTML/form-association.html'" type="button">Donner</button>
+        </div>
+    </section>
+    <section class="third-donation h1-donation">
+        <div class="text-turtle"><h2>Aidez-les</h2>
+            <p>La Mer est rempli de nos déchets aidez-nous a combattre ceci
+            </p>
+
+            <button onclick="window.location.href = 'HTML/form-association.html'" type="button">Donner</button>
+
+        </div>
+    </section>
+</div>
+<footer>
+    <div class="adress">
+        <ol>
+            <li>7ay lCornich</li>
+            <li>rue 13</li>
+            <li>Stah jaber</li>
+            <li>Mounastir</li>
+            <li>+216.50.895.250</li>
+            <li>Notre Email: <a href="">hermi.mouhib1@gmail.com</a></li>
+        </ol>
+
+    </div>
+</footer>
+</body>
+
+</html>
