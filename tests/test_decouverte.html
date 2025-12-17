@@ -1,0 +1,297 @@
+import { screen, fireEvent, waitFor } from '@testing-library/dom';
+import '@testing-library/jest-dom';
+import { JSDOM } from 'jsdom';
+import fs from 'fs';
+import path from 'path';
+
+// Load the HTML file content
+const htmlPath = path.resolve(__dirname, '../../G.A.R.S.C/HTML/decouverte.html');
+const htmlContent = fs.readFileSync(htmlPath, 'utf8');
+
+let dom;
+let originalLocation;
+
+beforeEach(() => {
+    // Create a new JSDOM instance for each test
+    dom = new JSDOM(htmlContent, {
+        url: 'http://localhost/G.A.R.S.C/HTML/decouverte.html', // Set base URL for relative paths
+        referrer: 'http://localhost/',
+        contentType: 'text/html',
+        includeNodeLocations: true,
+        storageQuota: 10000000,
+    });
+    global.window = dom.window;
+    global.document = dom.window.document;
+    global.navigator = dom.window.navigator;
+
+    // Store original window.location
+    originalLocation = window.location;
+
+    // Mock window.location for navigation tests
+    delete window.location;
+    window.location = {
+        href: 'http://localhost/G.A.R.S.C/HTML/decouverte.html', // Initial URL for testing
+        assign: jest.fn((url) => { window.location.href = url; }),
+        replace: jest.fn(),
+        reload: jest.fn(),
+    };
+});
+
+afterEach(() => {
+    // Restore original window.location
+    window.location = originalLocation;
+    jest.restoreAllMocks();
+});
+
+describe('decouverte.html structure and content', () => {
+
+    test('should have correct basic HTML structure and metadata', () => {
+        expect(document.documentElement).toHaveAttribute('lang', 'fr');
+        expect(document.title).toBe('Site association animal');
+        expect(document.querySelector('meta[charset]')).toHaveAttribute('charset', 'utf-8');
+        expect(document.querySelector('meta[name="viewport"]')).toHaveAttribute('content', 'width=device-width, initial-scale=1');
+        expect(document.querySelector('meta[name="theme-color"]')).toHaveAttribute('content', '#fafafa');
+    });
+
+    test('should link to essential CSS files', () => {
+        expect(document.querySelector('link[href="../css/main.css"][rel="stylesheet"]')).toBeInTheDocument();
+        expect(document.querySelector('link[href="../css/article.css"][rel="stylesheet"]')).toBeInTheDocument();
+        expect(document.querySelector('link[href="../css/navbar.css"][rel="stylesheet"]')).toBeInTheDocument();
+        expect(document.querySelector('link[href="styles.css"][rel="stylesheet"]')).toBeInTheDocument();
+    });
+
+    test('should link to the example JavaScript file', () => {
+        expect(document.querySelector('script[src="../js/exemple.js"]')).toBeInTheDocument();
+    });
+
+    test('should contain a header with fixed navigation', () => {
+        const header = screen.getByRole('banner');
+        expect(header).toBeInTheDocument();
+        expect(header.querySelector('#nav-fixed')).toBeInTheDocument();
+    });
+
+    test('should have social media logos in the header', () => {
+        const logoList = document.querySelector('.logo-list');
+        expect(logoList).toBeInTheDocument();
+
+        const arobaseLogo = screen.getByAltText('logo arobase');
+        expect(arobaseLogo).toBeInTheDocument();
+        expect(arobaseLogo).toHaveAttribute('src', '../img/logo-arobase.png');
+
+        const instaLogo = screen.getByAltText('logo instagram');
+        expect(instaLogo).toBeInTheDocument();
+        expect(instaLogo).toHaveAttribute('src', '../img/logo-instagram.png');
+
+        const facebookLogo = screen.getByAltText('logo facebook');
+        expect(facebookLogo).toBeInTheDocument();
+        expect(facebookLogo).toHaveAttribute('src', '../img/logo-facebook.png');
+    });
+
+    test('should have the main logo in the green bar', () => {
+        const mainLogo = screen.getByAltText('logo');
+        expect(mainLogo).toBeInTheDocument();
+        expect(mainLogo).toHaveAttribute('id', 'logo');
+        expect(mainLogo).toHaveAttribute('src', '../img/logo-cerf-vert.png');
+    });
+
+    test('should have a functional burger menu toggle', () => {
+        const menuToggle = screen.getByLabelText('-'); // Input checkbox label is '-'
+        expect(menuToggle).toBeInTheDocument();
+        expect(menuToggle).toHaveAttribute('type', 'checkbox');
+        expect(menuToggle).toHaveAttribute('id', 'menu-toggle');
+
+        const menu = document.querySelector('#menu');
+        expect(menu).toBeInTheDocument();
+        // Initially, the menu might be hidden by CSS; we can't test display:none with JSDOM
+        // but we can test its presence.
+    });
+
+    test('should contain the main content section with headings and paragraphs', () => {
+        const h1 = screen.getByRole('heading', { level: 1, name: /Xcode Simulator Issue and the Importance of Showing Up/i });
+        expect(h1).toBeInTheDocument();
+
+        const h2_1 = screen.getByRole('heading', { level: 2, name: /Xcode Simulator Issue/i });
+        expect(h2_1).toBeInTheDocument();
+
+        const h2_2 = screen.getByRole('heading', { level: 2, name: /The Importance of Showing Up/i });
+        expect(h2_2).toBeInTheDocument();
+
+        const paragraphs = screen.getAllByText(/The user was unable to select any iOS simulators|Showing up is not about showing off/i);
+        expect(paragraphs.length).toBe(2);
+    });
+
+    test('should contain a footer with address details', () => {
+        const footer = screen.getByRole('contentinfo');
+        expect(footer).toBeInTheDocument();
+
+        const addressList = footer.querySelector('.adress ol');
+        expect(addressList).toBeInTheDocument();
+        expect(addressList).toHaveTextContent('7ay lCornich');
+        expect(addressList).toHaveTextContent('rue 13');
+        expect(addressList).toHaveTextContent('Stah jaber');
+        expect(addressList).toHaveTextContent('Mounastir');
+        expect(addressList).toHaveTextContent('+216.50.895.250');
+        expect(addressList).toHaveTextContent('Notre Email: hermi.mouhib1@gmail.com');
+
+        const emailLink = screen.getByRole('link', { name: 'hermi.mouhib1@gmail.com' });
+        expect(emailLink).toBeInTheDocument();
+        expect(emailLink).toHaveAttribute('href', ''); // Empty href for now
+    });
+});
+
+describe('Navigation menu functionality', () => {
+
+    test('should navigate to index.html when "Accueil" is clicked', () => {
+        const accueilLink = screen.getByText('Accueil');
+        fireEvent.click(accueilLink);
+        expect(window.location.assign).toHaveBeenCalledTimes(1);
+        expect(window.location.assign).toHaveBeenCalledWith('/index.html');
+        expect(window.location.href).toBe('/index.html');
+    });
+
+    test('should navigate to gouvernance.html when "Gouvernance" is clicked', () => {
+        const gouvernanceLink = screen.getByText('Gouvernance');
+        fireEvent.click(gouvernanceLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/gouvernance.html');
+    });
+
+    test('should navigate to historique.html when "Historique" is clicked', () => {
+        const historiqueLink = screen.getByText('Historique');
+        fireEvent.click(historiqueLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/historique.html');
+    });
+
+    test('should navigate to plan-strategique.html when "Plan Stratégique" is clicked', () => {
+        const planStrategiqueLink = screen.getByText('Plan Stratégique');
+        fireEvent.click(planStrategiqueLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/plan-strategique.html');
+    });
+
+    test('should navigate to equipe.html when "Équipe" is clicked', () => {
+        const equipeLink = screen.getByText('Équipe');
+        fireEvent.click(equipeLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/equipe.html');
+    });
+
+    test('should navigate to decouverte.html when "Découverte" is clicked', () => {
+        // This is the current page, so clicking it should still attempt navigation
+        const decouverteLink = screen.getAllByText('Découverte')[1]; // Get the one in the menu
+        fireEvent.click(decouverteLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/decouverte.html');
+    });
+
+    test('should navigate to lieux-loisirs.html when "Les lieux de loisirs" is clicked', () => {
+        const lieuxLoisirsLink = screen.getByText('Les lieux de loisirs');
+        fireEvent.click(lieuxLoisirsLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/lieux-loisirs.html');
+    });
+
+    test('should navigate to parcs.html when "Les parcs" is clicked', () => {
+        const parcsLink = screen.getByText('Les parcs');
+        fireEvent.click(parcsLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/parcs.html');
+    });
+
+    test('should navigate to circuits-naturels.html when "Les circuits naturels" is clicked', () => {
+        const circuitsNaturelsLink = screen.getByText('Les circuits naturels');
+        fireEvent.click(circuitsNaturelsLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/circuits-naturels.html');
+    });
+
+    test('should navigate to Article.html when "Protection" is clicked', () => {
+        const protectionLink = screen.getByText('Protection');
+        fireEvent.click(protectionLink);
+        expect(window.location.assign).toHaveBeenCalledWith('Article.html');
+    });
+
+    test('should navigate to politiques.html when "Les politiques" is clicked', () => {
+        const politiquesLink = screen.getByText('Les politiques');
+        fireEvent.click(politiquesLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/politiques.html');
+    });
+
+    test('should navigate to signaler-depassement.html when "Signaler un dépassement" is clicked', () => {
+        const signalerLink = screen.getByText('Signaler un dépassement');
+        fireEvent.click(signalerLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/signaler-depassement.html');
+    });
+
+    test('should navigate to conseils.html when "Conseils (astuces)" is clicked', () => {
+        const conseilsLink = screen.getByText('Conseils (astuces)');
+        fireEvent.click(conseilsLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/conseils.html');
+    });
+
+    test('should navigate to secourir-animal.html when "Comment secourir un animal" is clicked', () => {
+        const secourirLink = screen.getByText('Comment secourir un animal');
+        fireEvent.click(secourirLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/secourir-animal.html');
+    });
+
+    test('should navigate to proteger-plante.html when "Protéger une plante" is clicked', () => {
+        const protegerLink = screen.getByText('Protéger une plante');
+        fireEvent.click(protegerLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/proteger-plante.html');
+    });
+
+    test('should navigate to especes-rares.html when "Espèces rares" is clicked', () => {
+        const especesRaresLink = screen.getByText('Espèces rares');
+        fireEvent.click(especesRaresLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/especes-rares.html');
+    });
+
+    test('should navigate to partenaires-publics.html when "Partenaires publics" is clicked', () => {
+        const partenairesPublicsLink = screen.getByText('Partenaires publics');
+        fireEvent.click(partenairesPublicsLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/partenaires-publics.html');
+    });
+
+    test('should navigate to partenaires-entreprise.html when "Partenaires entreprise" is clicked', () => {
+        const partenairesEntrepriseLink = screen.getByText('Partenaires entreprise');
+        fireEvent.click(partenairesEntrepriseLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/partenaires-entreprise.html');
+    });
+
+    test('should navigate to partenaires-associatifs.html when "Partenaires associatifs" is clicked', () => {
+        const partenairesAssociatifsLink = screen.getByText('Partenaires associatifs');
+        fireEvent.click(partenairesAssociatifsLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/partenaires-associatifs.html');
+    });
+
+    test('should navigate to beneficiaire-actuel.html when "Bénéficiaire actuel" is clicked', () => {
+        const beneficiaireActuelLink = screen.getAllByText('Bénéficiaire actuel')[0]; // There are two links with this text
+        fireEvent.click(beneficiaireActuelLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/beneficiaire-actuel.html');
+    });
+
+    test('should navigate to anciens-beneficiaires.html when "Anciens bénéficiaires" is clicked', () => {
+        const anciensBeneficiairesLink = screen.getAllByText('Anciens bénéficiaires')[0]; // There are two links with this text
+        fireEvent.click(anciensBeneficiairesLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/anciens-beneficiaires.html');
+    });
+
+    test('should navigate to devenir-beneficiaire.html when "Devenir bénéficiaire" is clicked', () => {
+        const devenirBeneficiaireLink = screen.getByText('Devenir bénéficiaire');
+        fireEvent.click(devenirBeneficiaireLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/devenir-beneficiaire.html');
+    });
+
+    test('should navigate to form-association.html when "Faire un don" is clicked', () => {
+        const faireUnDonLink = screen.getByText('Faire un don');
+        fireEvent.click(faireUnDonLink);
+        expect(window.location.assign).toHaveBeenCalledWith('form-association.html');
+    });
+
+    test('should navigate to Liste de Projets when "Liste de Projets" is clicked', () => {
+        const listeProjetsLink = screen.getByText('Liste de Projets');
+        fireEvent.click(listeProjetsLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/beneficiaire-actuel.html');
+    });
+
+    test('should navigate to Formations when "Formations" is clicked', () => {
+        const formationsLink = screen.getByText('Formations');
+        fireEvent.click(formationsLink);
+        expect(window.location.assign).toHaveBeenCalledWith('HTML/anciens-beneficiaires.html');
+    });
+
+});
